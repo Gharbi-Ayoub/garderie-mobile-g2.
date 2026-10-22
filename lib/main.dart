@@ -66,13 +66,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             ),
             const SizedBox(height: 12),
-            const Text(
-              'Bienvenue dans notre garderie',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 18),
-            ),
-            const SizedBox(height: 25),
-            const CircularProgressIndicator(),
+            const Text('Bienvenue dans notre garderie'),
           ],
         ),
       ),
@@ -89,12 +83,87 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Ma Garderie'),
         backgroundColor: Colors.deepOrange,
+        foregroundColor: Colors.white,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            tooltip: 'Recherche',
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Recherche')),
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.notifications),
+            tooltip: 'Notifications',
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Notifications')),
+              );
+            },
+          ),
+        ],
       ),
-      body: const Center(
-        child: Text(
-          'Bienvenue dans Ma Garderie !',
-          style: TextStyle(fontSize: 22),
+
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(color: Colors.deepOrange),
+              child: Center(
+                child: Text(
+                  'Ma Garderie',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 26,
+                  ),
+                ),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.home),
+              title: const Text('Accueil'),
+              onTap: () => Navigator.pop(context),
+            ),
+            ListTile(
+              leading: const Icon(Icons.restaurant_menu),
+              title: const Text('Menus'),
+              onTap: () => Navigator.pop(context),
+            ),
+            ListTile(
+              leading: const Icon(Icons.info),
+              title: const Text('À propos'),
+              onTap: () => Navigator.pop(context),
+            ),
+          ],
         ),
+      ),
+
+      body: const Padding(
+        padding: EdgeInsets.all(16),
+        child: Align(
+          alignment: Alignment.topLeft,
+          child: Text(
+            'Menus du jour',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ),
+
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.deepOrange,
+        foregroundColor: Colors.white,
+        onPressed: () {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Ajouter un menu')),
+          );
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }
