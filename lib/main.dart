@@ -120,49 +120,87 @@ class HomePage extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.search),
-            onPressed: () {},
+            onPressed: () {
+  ScaffoldMessenger.of(context).showSnackBar(
+    const SnackBar(content: Text('Rechercher un menu')),
+  );
+},
+           
           ),
           IconButton(
             icon: const Icon(Icons.notifications),
-            onPressed: () {},
+           onPressed: () {
+  ScaffoldMessenger.of(context).showSnackBar(
+    const SnackBar(content: Text('Aucune notification')),
+  );
+},
           ),
         ],
       ),
 
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(color: Colors.deepOrange),
-              child: Center(
-                child: Text(
-                  'Ma Garderie',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 26,
-                  ),
-                ),
-              ),
+     
+drawer: Drawer(
+  child: ListView(
+    padding: EdgeInsets.zero,
+    children: [
+      const DrawerHeader(
+        decoration: BoxDecoration(
+          color: Colors.deepOrange,
+        ),
+        child: Center(
+          child: Text(
+            'Ma Garderie',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 26,
+              fontWeight: FontWeight.bold,
             ),
-            ListTile(
-              leading: const Icon(Icons.home),
-              title: const Text('Accueil'),
-              onTap: () => Navigator.pop(context),
-            ),
-            ListTile(
-              leading: const Icon(Icons.restaurant_menu),
-              title: const Text('Menus'),
-              onTap: () => Navigator.pop(context),
-            ),
-            ListTile(
-              leading: const Icon(Icons.info),
-              title: const Text('À propos'),
-              onTap: () => Navigator.pop(context),
-            ),
-          ],
+          ),
         ),
       ),
+
+      ListTile(
+        leading: const Icon(Icons.home),
+        title: const Text('Accueil'),
+        onTap: () {
+          Navigator.pop(context);
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Accueil'),
+            ),
+          );
+        },
+      ),
+
+      ListTile(
+        leading: const Icon(Icons.restaurant_menu),
+        title: const Text('Menus'),
+        onTap: () {
+          Navigator.pop(context);
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Menus'),
+            ),
+          );
+        },
+      ),
+
+      ListTile(
+        leading: const Icon(Icons.info),
+        title: const Text('À propos'),
+        onTap: () {
+          Navigator.pop(context);
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('À propos de Ma Garderie'),
+            ),
+          );
+        },
+      ),
+    ],
+  ),
+),
+
 
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -211,11 +249,11 @@ class HomePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.deepOrange,
         foregroundColor: Colors.white,
-        onPressed: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Ajouter un menu')),
-          );
-        },
+       onPressed: () {
+  ScaffoldMessenger.of(context).showSnackBar(
+    const SnackBar(content: Text('Ajouter un menu')),
+  );
+},
         child: const Icon(Icons.add),
       ),
     );
