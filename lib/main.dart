@@ -77,6 +77,39 @@ class _SplashScreenState extends State<SplashScreen> {
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
+  final List<Map<String, dynamic>> menus = const [
+    {
+      'id': 1,
+      'titre': 'Petit déjeuner',
+      'description': 'Lait, céréales et fruits',
+      'icone': '🥣',
+    },
+    {
+      'id': 2,
+      'titre': 'Déjeuner',
+      'description': 'Poulet, riz et légumes',
+      'icone': '🍲',
+    },
+    {
+      'id': 3,
+      'titre': 'Goûter',
+      'description': 'Biscuit et compote de pomme',
+      'icone': '🍪',
+    },
+    {
+      'id': 4,
+      'titre': 'Jus de fruits',
+      'description': "Jus d'orange naturel",
+      'icone': '🍊',
+    },
+    {
+      'id': 5,
+      'titre': 'Fruits frais',
+      'description': 'Une sélection de fruits de saison',
+      'icone': '🍎',
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,21 +120,11 @@ class HomePage extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.search),
-            tooltip: 'Recherche',
-            onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Recherche')),
-              );
-            },
+            onPressed: () {},
           ),
           IconButton(
             icon: const Icon(Icons.notifications),
-            tooltip: 'Notifications',
-            onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Notifications')),
-              );
-            },
+            onPressed: () {},
           ),
         ],
       ),
@@ -141,17 +164,47 @@ class HomePage extends StatelessWidget {
         ),
       ),
 
-      body: const Padding(
-        padding: EdgeInsets.all(16),
-        child: Align(
-          alignment: Alignment.topLeft,
-          child: Text(
-            'Menus du jour',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Menus du jour',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
+            const SizedBox(height: 12),
+
+            Expanded(
+              child: ListView.builder(
+                itemCount: menus.length,
+                itemBuilder: (context, index) {
+                  final menu = menus[index];
+
+                  return Card(
+                    margin: const EdgeInsets.only(bottom: 12),
+                    child: ListTile(
+                      contentPadding: const EdgeInsets.all(12),
+                      leading: Text(
+                        menu['icone'],
+                        style: const TextStyle(fontSize: 36),
+                      ),
+                      title: Text(
+                        menu['titre'],
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      subtitle: Text(menu['description']),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
 
